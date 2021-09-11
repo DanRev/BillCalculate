@@ -13,15 +13,15 @@ export default function FieldCalc(props) {
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.container__safeArea}>
-        <Text style={styles.safeArea__text}>{props.formatterPeso.format(props.value)}</Text>
+        <Text style={styles.safeArea__text}>{props.formatterPeso(props.value)}</Text>
         <TextInput
           style={styles.input}
           onChangeText={onChangeNumber}
           placeholder="0"
           keyboardType="numeric"
         />
-        </SafeAreaView>
-        <Text>{props.formatterPeso.format(quantity*props.value)}</Text>
+      </SafeAreaView>
+      <Text style={styles.container__textTotal}>{props.formatterPeso(quantity*props.value)}</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -38,19 +38,25 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
   container__safeArea:{
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     marginRight: '5%',
   },
+  container__textTotal:{
+    width: '10%',
+    textAlign: 'center',
+  },
   safeArea__text:{
     marginRight: '5%',
-  }
+    width: '30%',
+    textAlign: 'center',
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+  },
 });
