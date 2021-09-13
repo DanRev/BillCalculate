@@ -16,7 +16,6 @@ export default function App() {
   }
 
   function formatNumber(value) {
-    console.log(value);
     return numeral(value).format('0,0');
   }
 
