@@ -8,11 +8,11 @@ const typesOfBill = ['50000','20000','10000','5000','2000','1000','500','200','1
 
 
 export default function App() {
-  const [valueFinal,setValueFinal] = useState([]);
+  const [valueFinal,setValueFinal] = useState({});
 
   function reportValueOfChild(quantity,typeOfBill) {
     var total = quantity * typeOfBill;
-    setValueFinal([...valueFinal,total]);
+    valueFinal[typeOfBill] = total;
   }
 
   function formatNumber(value) {
@@ -21,7 +21,7 @@ export default function App() {
 
   function calculateValue(){
     const reducer = (previousValue, currentValue) => previousValue + currentValue;
-    var fullValue = valueFinal.reduce(reducer);
+    var fullValue = Object.values(valueFinal).reduce(reducer);
     Alert.alert(
       "Confirm",
       `El total es: ${formatNumber(fullValue)}`,  

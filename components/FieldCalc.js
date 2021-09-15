@@ -45,13 +45,13 @@ const styles = StyleSheet.create({
     marginRight: '0%',
   },
   container__textTotal:{
-    width: '15%',
+    width: '60%',
     textAlign: 'center',
   },
   safeArea__text:{
     marginRight: '5%',
     textAlign: 'center',
-    width: '30%',
+    width: '50%',
   },
   input: {
     height: 40,
