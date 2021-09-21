@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '40%',
+    width: '50%',
+    height: 70,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -47,9 +48,10 @@ const styles = StyleSheet.create({
   container__textTotal:{
     width: '60%',
     textAlign: 'center',
+    marginLeft: '10%',
   },
   safeArea__text:{
-    marginRight: '5%',
+    // marginRight: '5%',
     textAlign: 'center',
     width: '50%',
   },
@@ -58,7 +60,7 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
-    width: '40%',
+    width: '50%',
     textAlign: 'center',
   },
 });
