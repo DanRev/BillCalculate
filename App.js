@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState , useEffect} from 'react';
 import * as SecureStore from 'expo-secure-store';
-import { StyleSheet, View, Button, Alert, ScrollView } from 'react-native';
+import { StyleSheet, View, Button, Alert, ScrollView , Text } from 'react-native';
 import FieldCalc from './components/FieldCalc';
 import numeral from 'numeral';
 
@@ -58,22 +58,24 @@ export default function App() {
   async function saveDate(key, value){
     var key = 'date';
     var date = new Date();
-    await SecureStore.setItemAsync(key , date.toDateString());
+    await SecureStore.setItemAsync(key , date.toLocaleString());
   }
 
   async function getValueFor(key) {
     let result = await SecureStore.getItemAsync(key);
     if (result) {
       setValue(result);
-      console.log(result);
     } else {
       alert('error date not found');
     }
   }  
   
-  useEffect(async() => {
-    var data = await getValueFor('key');
-    setValue(data);
+  useEffect(() => {
+    async function fetchDate(){
+      await getValueFor('date');
+    }
+
+    fetchDate();
   },[]);
 
   return (
@@ -82,7 +84,7 @@ export default function App() {
         {typesOfBill.map((value, index)=>{
           return <FieldCalc value={value} key={index} reportValue={reportValueOfChild} formatterPeso={formatNumber}/>
         })}
-        {value!=='' && <View>{"La fecha del ultimo cuadre fue "+value}</View>}
+        {(value!=='' && value!==null) ? <Text style={styles.container__textItem}>La fecha del ultimo cuadre fue {value}</Text> : null}
         <View style={styles.container__buttons}>
           <Button
             title="Calcular"
@@ -121,6 +123,15 @@ const styles = StyleSheet.create({
   },
   container__scroll:{
     alignItems: 'center',
-    marginTop:'20%',
+    marginTop:'5%',
+    marginLeft: '10%',
+    height: '90%',
+    width: '85%',
   },
+  container__textItem:{
+    marginRight:'10%',
+    marginTop:'5%',
+    marginBottom:'5%',
+    textAlign:'center',
+  }
 });
